@@ -207,3 +207,4 @@ C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Tests\obj\Debug\net10.0\r
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Tests\obj\Debug\net10.0\ServiceHub.Tests.pdb
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Tests\obj\Debug\net10.0\ServiceHub.Tests.genruntimeconfig.cache
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Tests\obj\Debug\net10.0\ref\ServiceHub.Tests.dll
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Tests\obj\Debug\net10.0\ServiceHub.Tests.sourcelink.json

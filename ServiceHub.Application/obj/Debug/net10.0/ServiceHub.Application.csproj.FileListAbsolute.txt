@@ -13,3 +13,4 @@ C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\refint\ServiceHub.Application.dll
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ServiceHub.Application.pdb
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ref\ServiceHub.Application.dll
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ServiceHub.Application.sourcelink.json

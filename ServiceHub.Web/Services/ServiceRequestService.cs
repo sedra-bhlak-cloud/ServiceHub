@@ -61,7 +61,7 @@ namespace ServiceHub.Web.Services
                 Title = r.Title,
                 Description = r.Description,
                 Status = r.Status.ToString(),
-                Priority = r.Priority.ToString(), // تم إضافة جلب الأولوية هنا
+                Priority = r.Priority.ToString(), 
                 CreatedAt = r.CreatedAt.ToString("yyyy-MM-dd HH:mm")
             }).ToListAsync();
         }
@@ -76,7 +76,7 @@ namespace ServiceHub.Web.Services
                     Title = r.Title,
                     Description = r.Description,
                     Status = r.Status.ToString(),
-                    Priority = r.Priority.ToString(), // تم إضافة جلب الأولوية هنا
+                    Priority = r.Priority.ToString(), 
                     CreatedAt = r.CreatedAt.ToString("yyyy-MM-dd HH:mm")
                 })
                 .FirstOrDefaultAsync();
@@ -84,6 +84,10 @@ namespace ServiceHub.Web.Services
 
         public async Task<int> CreateRequestAsync(ServiceRequestCreateDto dto, string userId)
         {
+            if (string.IsNullOrWhiteSpace(dto.Title))
+    {
+        throw new ArgumentException("Title cannot be empty.", nameof(dto.Title));
+    }
             var newRequest = new ServiceRequest
             {
                 Title = dto.Title,
@@ -104,30 +108,30 @@ namespace ServiceHub.Web.Services
         }
 
         public async Task<bool> UpdateRequestAsync(int id, ServiceRequestUpdateDto dto)
-{
-    var existingRequest = await _context.ServiceRequests.FindAsync(id);
-    if (existingRequest == null) return false;
+        {
+            var existingRequest = await _context.ServiceRequests.FindAsync(id);
+            if (existingRequest == null) return false;
 
+            existingRequest.Title = dto.Title;
+            existingRequest.Description = dto.Description;
+            existingRequest.Priority = dto.Priority;
+            existingRequest.AssignedToId = dto.AssignedToId;
 
-    existingRequest.Title = dto.Title;
-    existingRequest.Description = dto.Description;
-    existingRequest.Priority = dto.Priority;
-    existingRequest.AssignedToId = dto.AssignedToId;
+            if (dto.Status == RequestStatus.Closed)
+            {
+                existingRequest.Status = RequestStatus.Closed;
+                existingRequest.ClosedAt = DateTime.UtcNow; // Automatically set closed timestamp when status changes to Closed
+            }
+            else
+            {
+                existingRequest.Status = dto.Status;
+                existingRequest.ClosedAt = null;
+            }
 
-    if (dto.Status == RequestStatus.Closed)
-    {
-        existingRequest.Status = RequestStatus.Closed;
-        existingRequest.ClosedAt = DateTime.UtcNow; // Automatically set closed timestamp when status changes to Closed
-    }
-    else
-    {
-        existingRequest.Status = dto.Status;
-        existingRequest.ClosedAt = null;
-    }
+            var affectedRows = await _context.SaveChangesAsync();
+            return true;
+        }
 
-    var affectedRows = await _context.SaveChangesAsync();
-    return true;
-}
         public async Task<bool> DeleteRequestAsync(int id)
         {
             var request = await _context.ServiceRequests.FindAsync(id);
@@ -174,6 +178,29 @@ namespace ServiceHub.Web.Services
                 ResolvedRequests = resolvedRequests,
                 RecentRequests = recentRequests
             };
+        }
+
+        // 1. Enforce that an ordinary employee can only access their own requests
+        public async Task<ServiceRequest?> GetRequestByIdForUserAsync(int id, string userId)
+        {
+            var request = await _context.ServiceRequests.FindAsync(id);
+            if (request == null) return null;
+
+            // Security check: If the user is not the creator, block access (return null)
+            if (request.RequesterId != userId)
+            {
+                return null; 
+            }
+
+            return request;
+        }
+
+        // 2. Return articles that are published but NOT archived
+        public async Task<IEnumerable<KnowledgeArticle>> GetAvailableArticlesAsync()
+        {
+            return await _context.KnowledgeArticles
+                .Where(a => a.IsPublished && !a.IsArchived)
+                .ToListAsync();
         }
     }
 }

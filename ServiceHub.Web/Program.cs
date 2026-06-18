@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ServiceHub.Infrastructure.Data;
-using ServiceHub.Web.Services; // <-- Added this namespace to find your new service files
+using ServiceHub.Web.Services; 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. REGISTER THE DB CONTEXT FIRST
-// Ensure you have a connection string named "DefaultConnection" in appsettings.json
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
                         ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
@@ -22,8 +22,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 // 3. REGISTER THE SERVICE LAYER
-builder.Services.AddScoped<IServiceRequestService, ServiceRequestService>(); // <-- Added your service registration line here!
-
+builder.Services.AddScoped<IServiceRequestService, ServiceRequestService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

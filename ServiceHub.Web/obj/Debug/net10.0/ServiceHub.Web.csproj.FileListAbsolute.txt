@@ -318,3 +318,4 @@ C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Web\obj\Debug\net10.0\ref
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Web\obj\Debug\net10.0\ServiceHub.Web.pdb
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Web\obj\Debug\net10.0\ServiceHub.Web.genruntimeconfig.cache
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Web\obj\Debug\net10.0\ref\ServiceHub.Web.dll
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Web\obj\Debug\net10.0\ServiceHub.Web.sourcelink.json

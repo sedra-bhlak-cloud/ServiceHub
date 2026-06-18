@@ -15,3 +15,4 @@ C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.pdb
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.genruntimeconfig.cache
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ref\ServiceHub.Infrastructure.dll
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.sourcelink.json
