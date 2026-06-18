@@ -1,0 +1,30 @@
+:root {
+    --purple: #4b49d9;
+    --gray-bg: #f8f9fa;
+    --gray-border: #dee2e6;
+}
+
+/* Make the navbar professional and purple */
+.navbar {
+    background-color: var(--purple) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand, .nav-link { color: #ffffff !important; }
+
+/* Set a consistent light gray background for all pages */
+body {
+    background-color: var(--gray-bg);
+}
+
+/* Style all main buttons to match your brand */
+.btn-primary {
+    background-color: var(--purple);
+    border-color: var(--purple);
+}
+
+/* Add a clean, white card look to your tables and forms */
+.table, .form-control {
+    background-color: #ffffff;
+    border: 1px solid var(--gray-border);
+}

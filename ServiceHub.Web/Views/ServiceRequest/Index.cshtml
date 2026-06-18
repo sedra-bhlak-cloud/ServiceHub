@@ -1,0 +1,138 @@
+@model IEnumerable<ServiceHub.Web.DTOs.ServiceRequestResponseDto>
+@using ServiceHub.Domain.Enums
+
+@{
+    ViewData["Title"] = "Service Requests";
+}
+
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Service Requests Queue</h2>
+        <a asp-action="Create" class="btn btn-primary fw-bold">➕ Create New Request</a>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-4 bg-light">
+        <div class="card-body">
+            <form method="get" asp-controller="ServiceRequest" asp-action="Index" class="row g-3 align-items-end">
+                
+                <div class="col-md-4">
+                    <label class="form-label small fw-bold text-secondary">Search Keyword</label>
+                    <input type="text" name="search" class="form-control form-control-sm" 
+                           placeholder="Search title or description..." value="@ViewData["CurrentSearch"]" />
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold text-secondary">Status</label>
+                    <select name="status" class="form-select form-select-sm">
+                        <option value="">-- All Statuses --</option>
+                        @foreach (var statusValue in Enum.GetValues(typeof(RequestStatus)))
+                        {
+                            var statusName = statusValue.ToString();
+
+                            <option value="@statusName" selected="@(ViewData["CurrentStatus"]?.ToString() == statusName)">
+                                @statusName
+                            </option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold text-secondary">Priority</label>
+                    <select name="priority" class="form-select form-select-sm">
+                        <option value="">-- All Priorities --</option>
+                        
+                        @* تم تحويل القائمة هنا لتصبح ديناميكية وتقرأ من الـ Enum مباشرة لضمان ظهور Urgent *@
+                        @foreach (var priorityValue in Enum.GetValues(typeof(RequestPriority)))
+                        {
+                            var priorityName = priorityValue.ToString();
+                            <option value="@priorityName" selected="@(ViewData["CurrentPriority"]?.ToString() == priorityName)">
+                                @priorityName
+                            </option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold text-secondary">Sort By</label>
+                    <select name="sortBy" class="form-select form-select-sm">
+                        <option value="date_desc" selected="@(ViewData["CurrentSort"]?.ToString() == "date_desc")">Newest First</option>
+                        <option value="date_asc" selected="@(ViewData["CurrentSort"]?.ToString() == "date_asc")">Oldest First</option>
+                        <option value="priority_desc" selected="@(ViewData["CurrentSort"]?.ToString() == "priority_desc")">Highest Priority</option>
+                        <option value="title_asc" selected="@(ViewData["CurrentSort"]?.ToString() == "title_asc")">Alphabetical</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2 d-flex gap-2">
+                    <button type="submit" class="btn btn-sm btn-primary w-100 fw-bold">🔍 Filter</button>
+                    <a asp-action="Index" class="btn btn-sm btn-outline-secondary w-100 text-center">Clear</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Created At</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">No matching service requests found.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-dark">@item.Title</td>
+                                <td class="text-muted text-truncate" style="max-width: 250px;">@item.Description</td>
+                                <td>
+                                    <span class="badge bg-secondary">@item.Status</span>
+                                </td>
+                                <td>
+                                    @* كود إضافي اختياري: تلوين الـ Badge بناءً على درجة الخطورة ليصبح شكل الجدول مذهلاً *@
+                                    @{
+                                        var badgeClass = item.Priority switch
+                                        {
+                                            "Urgent" => "bg-danger text-white",
+                                            "High" => "bg-warning text-dark",
+                                            "Medium" => "bg-info text-dark",
+                                            _ => "bg-light text-dark border"
+                                        };
+                                    }
+                                    <span class="badge @badgeClass">@item.Priority</span>
+                                </td>
+                                <td>@item.CreatedAt</td>
+                                <td class="text-end pe-4">
+                                    <div class="btn-group gap-1">
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">Details</a>
+                                        
+                                        @if (User.IsInRole("Admin") || User.IsInRole("SupportAgent"))
+                                        {
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">Edit</a>
+                                        }
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

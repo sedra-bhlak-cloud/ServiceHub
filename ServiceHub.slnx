@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ServiceHub.Application/ServiceHub.Application.csproj" />
+  <Project Path="ServiceHub.Domain/ServiceHub.Domain.csproj" />
+  <Project Path="ServiceHub.Infrastructure/ServiceHub.Infrastructure.csproj" />
+  <Project Path="ServiceHub.Tests/ServiceHub.Tests.csproj" />
+  <Project Path="ServiceHub.Web/ServiceHub.Web.csproj" />
+</Solution>

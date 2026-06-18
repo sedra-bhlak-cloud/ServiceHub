@@ -1,0 +1,50 @@
+@model ServiceHub.Domain.Entities.ServiceRequest
+
+@{
+    ViewData["Title"] = "Delete Ticket Confirmation";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white py-3">
+                    <h5 class="mb-0 font-weight-bold">⚠️ Delete Service Request?</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">Are you absolutely sure you want to permanently delete this support ticket? This action cannot be undone.</p>
+                    <hr />
+                    
+                    <div class="mb-3">
+                        <label class="small text-muted d-block">Ticket Title</label>
+                        <strong class="text-dark fs-5">@Model.Title</strong>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="small text-muted d-block">Description</label>
+                        <p class="text-secondary bg-light p-2 rounded border small">@Model.Description</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="small text-muted d-block">Department</label>
+                            <span class="badge bg-light text-dark border">@(Model.Department?.Name ?? "Unassigned")</span>
+                        </div>
+                        <div class="col-6">
+                            <label class="small text-muted d-block">Category</label>
+                            <span class="badge bg-light text-dark border">@(Model.Category?.Name ?? "General")</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light d-flex justify-content-between py-3">
+                    <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                    
+                    <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Permanently Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

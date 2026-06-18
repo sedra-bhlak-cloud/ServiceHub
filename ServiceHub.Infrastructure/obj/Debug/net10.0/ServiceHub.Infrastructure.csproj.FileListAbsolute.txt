@@ -1,0 +1,17 @@
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\bin\Debug\net10.0\ServiceHub.Infrastructure.deps.json
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\bin\Debug\net10.0\ServiceHub.Infrastructure.runtimeconfig.json
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\bin\Debug\net10.0\ServiceHub.Infrastructure.dll
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\bin\Debug\net10.0\ServiceHub.Infrastructure.pdb
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\bin\Debug\net10.0\ServiceHub.Domain.dll
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\bin\Debug\net10.0\ServiceHub.Domain.pdb
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.AssemblyInfo.cs
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceH.AA7B7331.Up2Date
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.dll
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\refint\ServiceHub.Infrastructure.dll
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.pdb
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ServiceHub.Infrastructure.genruntimeconfig.cache
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Infrastructure\obj\Debug\net10.0\ref\ServiceHub.Infrastructure.dll

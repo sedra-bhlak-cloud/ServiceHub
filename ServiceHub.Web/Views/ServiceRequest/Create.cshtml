@@ -1,0 +1,70 @@
+@model ServiceHub.Domain.Entities.ServiceRequest
+
+@{
+    ViewData["Title"] = "Open New Ticket";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Open New Support Ticket</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label font-weight-bold">Ticket Title</label>
+                            <input asp-for="Title" class="form-control" placeholder="Briefly describe the issue (e.g., VPN login failing)" required />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label font-weight-bold">Detailed Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Provide details about your request or problem..." required></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DepartmentId" class="form-label font-weight-bold">Target Department</label>
+                                <select asp-for="DepartmentId" class="form-select text-dark" asp-items="ViewBag.Departments" required>
+                                    <option value="">-- Select Department --</option>
+                                </select>
+                                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CategoryId" class="form-label font-weight-bold">Service Category</label>
+                                <select asp-for="CategoryId" class="form-select text-dark" asp-items="ViewBag.Categories" required>
+                                    <option value="">-- Select Category --</option>
+                                </select>
+                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Priority" class="form-label font-weight-bold">Urgency / Priority</label>
+                                <select asp-for="Priority" class="form-select text-dark" asp-items="Html.GetEnumSelectList<ServiceHub.Domain.Enums.RequestPriority>()"></select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="RequestType" class="form-label font-weight-bold">Request Type</label>
+                                <select asp-for="RequestType" class="form-select text-dark" asp-items="Html.GetEnumSelectList<ServiceHub.Domain.Enums.RequestType>()"></select>
+                            </div>
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Submit Ticket</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
