@@ -5,8 +5,8 @@ C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Domain\obj\Debug\net10.0\
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Domain\obj\Debug\net10.0\ServiceHub.Domain.AssemblyInfoInputs.cache
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Domain\obj\Debug\net10.0\ServiceHub.Domain.AssemblyInfo.cs
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Domain\obj\Debug\net10.0\ServiceHub.Domain.csproj.CoreCompileInputs.cache
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Domain\obj\Debug\net10.0\ServiceHub.Domain.sourcelink.json
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Domain\obj\Debug\net10.0\ServiceHub.Domain.dll
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Domain\obj\Debug\net10.0\refint\ServiceHub.Domain.dll
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Domain\obj\Debug\net10.0\ServiceHub.Domain.pdb
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Domain\obj\Debug\net10.0\ref\ServiceHub.Domain.dll
-C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Domain\obj\Debug\net10.0\ServiceHub.Domain.sourcelink.json

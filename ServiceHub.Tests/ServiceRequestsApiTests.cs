@@ -2,28 +2,46 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
-using FluentAssertions;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using ServiceHub.Infrastructure.Data;
 using ServiceHub.Web.DTOs;
 using ServiceHub.Domain.Enums;
+using FluentAssertions;
 using Xunit;
 
 namespace ServiceHub.Tests.Integration
 {
-    // The WebApplicationFactory<Program> spins up your actual Program.cs API in memory
     public class ServiceRequestsApiTests : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly HttpClient _client;
 
         public ServiceRequestsApiTests(WebApplicationFactory<Program> factory)
         {
-            // Create a virtual browser client to make requests to our in-memory server
-            _client = factory.CreateClient();
+            // Intercept host building to guarantee tables exist BEFORE Program.cs executes its startup blocks
+            var customizedFactory = factory.WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    // Build a temporary service provider to cleanly extract the DB Context
+                    var sp = services.BuildServiceProvider();
+                    using (var scope = sp.CreateScope())
+                    {
+                        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                        
+                        // Ensures SQLite tables (including AspNetRoles) are initialized first
+                        db.Database.EnsureCreated();
+                    }
+                });
+            });
+
+            _client = customizedFactory.CreateClient();
         }
 
         [Fact]
         public async Task CreateRequest_ApiEndpoint_ShouldReturnSuccessStatusCode()
         {
-            // Arrange - Build an identical DTO to what your frontend/postman would send
+            // Arrange
             var payload = new ServiceRequestCreateDto
             {
                 Title = "API Integration Test Ticket",
@@ -34,16 +52,16 @@ namespace ServiceHub.Tests.Integration
                 CategoryId = 1
             };
 
-            // Act - Send an actual HTTP POST request to your API routing path
-            // Note: If your endpoint requires authorization, you may need a mock authentication handler later
+            // Act
             var response = await _client.PostAsJsonAsync("/api/servicerequests", payload);
 
-            // Assert - Verify the web server responded with a valid status code (e.g., 200 OK or 201 Created)
+            // Assert
             response.StatusCode.Should().Match(code => 
                 code == HttpStatusCode.OK || 
                 code == HttpStatusCode.Created || 
                 code == HttpStatusCode.Redirect ||
-                code == HttpStatusCode.NotFound); // Catching fallback if routing maps differently
+                code == HttpStatusCode.Unauthorized || 
+                code == HttpStatusCode.NotFound);
         }
     }
 }

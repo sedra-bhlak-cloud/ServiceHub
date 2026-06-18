@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ServiceHub.Web.DTOs;
-using ServiceHub.Web.Services; // <-- Importing your new Service Layer
+using ServiceHub.Web.Services; 
 using System.Security.Claims;
 
 namespace ServiceHub.Web.Controllers.Api

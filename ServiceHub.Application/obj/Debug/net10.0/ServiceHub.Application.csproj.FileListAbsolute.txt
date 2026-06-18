@@ -8,9 +8,9 @@ C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ServiceHub.Application.AssemblyInfoInputs.cache
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ServiceHub.Application.AssemblyInfo.cs
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ServiceHub.Application.csproj.CoreCompileInputs.cache
+C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ServiceHub.Application.sourcelink.json
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ServiceH.B8DD6654.Up2Date
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ServiceHub.Application.dll
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\refint\ServiceHub.Application.dll
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ServiceHub.Application.pdb
 C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ref\ServiceHub.Application.dll
-C:\Users\hrtraining_01\Documents\ServiceHub\ServiceHub.Application\obj\Debug\net10.0\ServiceHub.Application.sourcelink.json

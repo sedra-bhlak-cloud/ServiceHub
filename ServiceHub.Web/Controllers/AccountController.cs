@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHub.Web.Controllers
 {
-    [AllowAnonymous] // This allows access even if you have a global filter
+    [AllowAnonymous] 
     public class AccountController : Controller
     {
         public IActionResult Login() => View();

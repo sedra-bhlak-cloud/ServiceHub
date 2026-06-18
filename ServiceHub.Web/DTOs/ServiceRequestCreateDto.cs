@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using ServiceHub.Domain.Enums; // <-- Make sure to add this import at the top!
+using ServiceHub.Domain.Enums; 
 
 namespace ServiceHub.Web.DTOs
 {

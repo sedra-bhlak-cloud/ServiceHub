@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ServiceHub.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e40f50a0ce54c243cd6fb08cdae61685f891556")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+406575adc4a151aea094e2b5f20e55b0d5f14f6e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ServiceHub.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ServiceHub.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
