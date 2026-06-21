@@ -1,6 +1,0 @@
-{
-  "ServiceHub.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\hrtraining_01\\Documents\\ServiceHub\\ServiceHub.Application",
-  "ServiceHub.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\hrtraining_01\\Documents\\ServiceHub\\ServiceHub.Domain",
-  "ServiceHub.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\hrtraining_01\\Documents\\ServiceHub\\ServiceHub.Infrastructure",
-  "ServiceHub.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\hrtraining_01\\Documents\\ServiceHub\\ServiceHub.Web"
-}
