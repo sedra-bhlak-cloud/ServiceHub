@@ -11,8 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
                         ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
-
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 // 2. REGISTER IDENTITY (It now correctly finds ApplicationDbContext)
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
@@ -50,6 +49,21 @@ app.MapRazorPages();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+    
+  
+    // ADDED: Automatically apply migrations
+   
+    try
+    {
+        var context = services.GetRequiredService<ApplicationDbContext>();
+        await context.Database.MigrateAsync();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"An error occurred migrating the DB: {ex.Message}");
+    }
+   
+
     await ServiceHub.Web.Data.DbSeeder.SeedData(services);
 }
 app.UseStaticFiles();

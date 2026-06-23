@@ -70,6 +70,22 @@ namespace ServiceHub.Web.Data
                     }
                 }
             }
+            // 5. Seed Admin User
+var adminEmail = "admin@servicehub.com";
+if (await userManager.FindByEmailAsync(adminEmail) == null)
+{
+    var admin = new IdentityUser 
+    { 
+        UserName = adminEmail, 
+        Email = adminEmail, 
+        EmailConfirmed = true 
+    };
+    var result = await userManager.CreateAsync(admin, "Admin@123");
+    if (result.Succeeded)
+    {
+        await userManager.AddToRoleAsync(admin, "Admin");
+    }
+}
         }
     }
 }
