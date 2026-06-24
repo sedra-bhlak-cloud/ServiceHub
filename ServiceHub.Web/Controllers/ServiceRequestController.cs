@@ -21,7 +21,7 @@ namespace ServiceHub.Web.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IServiceRequestService _requestService;
 
-        // FIXED: Unified single constructor combining all required services
+     
         public ServiceRequestController(
             ApplicationDbContext context, 
             UserManager<IdentityUser> userManager, 
@@ -60,14 +60,15 @@ namespace ServiceHub.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ServiceRequest request)
         {
-            request.RequesterId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+           request.RequesterId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+request.CreatedAt = DateTime.UtcNow;
 
-            if (ModelState.IsValid)
-            {
-                _context.ServiceRequests.Add(request);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+if (ModelState.IsValid)
+{
+    _context.ServiceRequests.Add(request);
+    await _context.SaveChangesAsync();
+    return RedirectToAction(nameof(Index));
+}
 
             ViewBag.Departments = new SelectList(await _context.Departments.ToListAsync(), "Id", "Name");
             ViewBag.Categories = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name");
@@ -112,8 +113,9 @@ namespace ServiceHub.Web.Controllers
 
             existing.Title = request.Title;
             existing.Description = request.Description;
-            existing.Priority = request.Priority;
+            
             existing.AssignedToId = request.AssignedToId;
+            existing.CreatedAt = DateTime.SpecifyKind(existing.CreatedAt, DateTimeKind.Utc);
 
             string agentDisplay = "None";
             if (!string.IsNullOrEmpty(existing.AssignedToId))
@@ -124,14 +126,15 @@ namespace ServiceHub.Web.Controllers
 
             if (oldStatus != existing.Status.ToString() || oldAgent != existing.AssignedToId || !string.IsNullOrEmpty(userComment))
             {
-                var history = new RequestHistory
-                {
-                    RequestId = existing.Id,
-                    ChangedBy = User.Identity?.Name ?? "System",
-                    Action = "Updated",
-                    Details = $"Status: {oldStatus} → {existing.Status}. Agent: {agentDisplay}." +
-                              (string.IsNullOrEmpty(userComment) ? "" : $" Note: {userComment}")
-                };
+               var history = new RequestHistory
+{
+    RequestId = existing.Id,
+    ChangedBy = User.Identity?.Name ?? "System",
+    Action = "Updated",
+    Details = $"Status: {oldStatus} → {existing.Status}. Agent: {agentDisplay}." +
+              (string.IsNullOrEmpty(userComment) ? "" : $" Note: {userComment}"),
+    ChangeDate = DateTime.UtcNow
+};
                 _context.RequestHistories.Add(history);
             }
 

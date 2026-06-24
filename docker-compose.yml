@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: servicehub-db
+    restart: always
+    environment:
+      POSTGRES_USER: servicehub_user
+      POSTGRES_PASSWORD: SecurePassword123!
+      POSTGRES_DB: ServiceHubDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    image: servicehub-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: servicehub-web
+    ports:
+      - "8080:8080"
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=db;Database=ServiceHubDb;Username=servicehub_user;Password=SecurePassword123!"
+    depends_on:
+      - db
+    volumes:
+      - dataprotection_keys:/root/.aspnet/DataProtection-Keys
+
+volumes:
+  postgres_data:
+  dataprotection_keys:

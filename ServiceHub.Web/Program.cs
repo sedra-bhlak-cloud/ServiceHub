@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ServiceHub.Infrastructure.Data;
-using ServiceHub.Web.Services; 
+using ServiceHub.Web.Services;
+using ServiceHub.Web.Data; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,22 +50,17 @@ app.MapRazorPages();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    
-  
-    // ADDED: Automatically apply migrations
-   
     try
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
         await context.Database.MigrateAsync();
+        await DbSeeder.SeedData(services);
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"An error occurred migrating the DB: {ex.Message}");
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred migrating or seeding the DB.");
     }
-   
-
-    await ServiceHub.Web.Data.DbSeeder.SeedData(services);
 }
 app.UseStaticFiles();
 app.Run();

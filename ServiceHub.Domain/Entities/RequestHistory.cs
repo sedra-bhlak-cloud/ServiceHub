@@ -11,6 +11,6 @@ namespace ServiceHub.Domain.Entities
         public string? Action { get; set; }
         public string? Details { get; set; }
        public string? Comment { get; set; }
-        public DateTime ChangeDate { get; set; } = DateTime.Now;
+       public DateTime ChangeDate { get; set; } = DateTime.UtcNow;
     }
 }
