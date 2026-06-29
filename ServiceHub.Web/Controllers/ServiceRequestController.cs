@@ -113,7 +113,7 @@ if (ModelState.IsValid)
 
             existing.Title = request.Title;
             existing.Description = request.Description;
-            
+            existing.Resolution = request.Resolution;
             existing.AssignedToId = request.AssignedToId;
             existing.CreatedAt = DateTime.SpecifyKind(existing.CreatedAt, DateTimeKind.Utc);
 

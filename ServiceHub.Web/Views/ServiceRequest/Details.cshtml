@@ -10,29 +10,47 @@
                 <th>Details</th>
             </tr>
         </thead>
-     <tbody>
-    @{
-        var userLookup = ViewBag.UserLookup as Dictionary<string, string> ?? new Dictionary<string, string>();
-    }
+        <tbody>
+        @{
+            var userLookup = ViewBag.UserLookup as Dictionary<string, string> ?? new Dictionary<string, string>();
+        }
 
-    @foreach (var log in Model.RequestHistories)
-    {
-        <tr>
-            <td>@log.ChangeDate.ToString("g")</td>
-            <td><span class="badge bg-secondary">@log.Action</span></td>
-            <td>
-                @if (log.ChangedBy != null && userLookup.ContainsKey(log.ChangedBy))
-                {
-                    @userLookup[log.ChangedBy]
-                }
-                else
-                {
-                    @(log.ChangedBy ?? "System")
-                }
-            </td>
-            <td>@log.Details</td>
-        </tr>
-    }
-</tbody>
+        @foreach (var log in Model.RequestHistories)
+        {
+            <tr>
+                <td>@log.ChangeDate.ToString("g")</td>
+                <td><span class="badge bg-secondary">@log.Action</span></td>
+                <td>
+                    @if (log.ChangedBy != null && userLookup.ContainsKey(log.ChangedBy))
+                    {
+                        @userLookup[log.ChangedBy]
+                    }
+                    else
+                    {
+                        @(log.ChangedBy ?? "System")
+                    }
+                </td>
+                <td>@log.Details</td>
+            </tr>
+        }
+        </tbody>
     </table>
 </div>
+
+@if (Model.Status.ToString() == "Resolved" || Model.Status.ToString() == "Closed")
+{
+    <div class="card border-info mb-3 mt-4 shadow-sm">
+        <div class="card-body text-info d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="card-title mb-1 fw-bold"><i class="bi bi-journal-check"></i> Knowledge Hub Integration</h5>
+                <p class="card-text small text-muted mb-0">This request is finalized. You can transform its solution into a public FAQ article template.</p>
+            </div>
+            <form asp-controller="KnowledgeHub" asp-action="CloneFromTicket" method="post" class="mb-0">
+                <input type="hidden" name="ticketId" value="@Model.Id" />
+                <button type="submit" class="btn btn-info text-white fw-bold px-4">
+                    <i class="bi bi-journal-plus"></i> Clone to Knowledge Hub
+                </button>
+            </form>
+        </div>
+    </div>
+}

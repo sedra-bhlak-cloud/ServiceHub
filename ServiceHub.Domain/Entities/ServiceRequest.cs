@@ -31,5 +31,7 @@ namespace ServiceHub.Domain.Entities
         public int CategoryId { get; set; }
         public virtual Category? Category { get; set; }
         public List<RequestHistory> RequestHistories { get; set; } = new List<RequestHistory>();
+        [StringLength(2000)]
+public string? Resolution { get; set; }
     }
 }

@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using ServiceHub.Infrastructure.Data;
 using ServiceHub.Web.Services;
 using ServiceHub.Web.Data; 
-
+using ServiceHub.Application.Services;
+using ServiceHub.Infrastructure.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. REGISTER THE DB CONTEXT FIRST
@@ -23,6 +24,7 @@ builder.Services.AddRazorPages();
 
 // 3. REGISTER THE SERVICE LAYER
 builder.Services.AddScoped<IServiceRequestService, ServiceRequestService>();
+builder.Services.AddScoped<IKnowledgeHubService, KnowledgeHubService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

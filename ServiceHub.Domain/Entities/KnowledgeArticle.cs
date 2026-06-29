@@ -16,5 +16,6 @@ namespace ServiceHub.Domain.Entities
       
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
+    public int? SourceServiceRequestId{ get; set;}
     }
 }
